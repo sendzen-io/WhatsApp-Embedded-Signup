@@ -186,6 +186,9 @@ importers:
       '@workspace/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@workspace/ui-template-management':
+        specifier: workspace:*
+        version: link:../../packages/ui-template-management
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -287,6 +290,9 @@ importers:
       '@workspace/ui-template-management':
         specifier: workspace:*
         version: link:../../packages/ui-template-management
+      axios:
+        specifier: ^1.7.9
+        version: 1.11.0
       next:
         specifier: ^15.2.3
         version: 15.4.4(@playwright/test@1.56.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
