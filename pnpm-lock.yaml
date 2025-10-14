@@ -85,6 +85,9 @@ importers:
       '@workspace/ui-core':
         specifier: workspace:*
         version: link:../../packages/ui-core
+      '@workspace/ui-embedded-setup':
+        specifier: workspace:*
+        version: link:../../packages/ui-embedded-setup
       next:
         specifier: ^15.2.3
         version: 15.4.4(@playwright/test@1.56.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
