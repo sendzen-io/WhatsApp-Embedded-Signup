@@ -45,6 +45,9 @@ importers:
 
   apps/api-playground:
     dependencies:
+      '@workspace/ui-api-playground':
+        specifier: workspace:*
+        version: link:../../packages/ui-api-playground
       '@workspace/ui-core':
         specifier: workspace:*
         version: link:../../packages/ui-core
@@ -204,9 +207,6 @@ importers:
       next-themes:
         specifier: ^0.4.4
         version: 0.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      prismjs:
-        specifier: ^1.30.0
-        version: 1.30.0
       punycode:
         specifier: ^2.3.1
         version: 2.3.1
@@ -244,6 +244,9 @@ importers:
       '@workspace/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      '@workspace/ui-api-playground':
+        specifier: workspace:*
+        version: link:../../packages/ui-api-playground
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -461,6 +464,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.17.19
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       '@types/react':
         specifier: ^19
         version: 19.0.10
@@ -476,6 +482,9 @@ importers:
       next:
         specifier: 15.4.4
         version: 15.4.4(@playwright/test@1.56.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       tailwindcss:
         specifier: ^4.0.8
         version: 4.0.8

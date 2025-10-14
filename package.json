@@ -6,6 +6,12 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "playground":"pnpm run dev --filter=oss-api-playground",
+    "suite":"pnpm run dev --filter=oss-suite",
+    "template":"pnpm run dev --filter=oss-template-management",
+    "embedded-setup":"pnpm run dev --filter=oss-embedded-setup",
+    "marketing":"pnpm run dev --filter=marketing",
+    "product":"pnpm run dev --filter=product",
     "pnpm:run": "pnpm run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
