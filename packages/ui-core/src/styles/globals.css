@@ -12,7 +12,7 @@
   html,
   body {
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+    /* overscroll-behavior: none; */
   }
 
   :root {
@@ -924,4 +924,15 @@
     padding: 0.75rem;
   }
 }
+}
+
+/* Combobox CommandItem keyboard navigation styles */
+[data-combobox-item="true"][data-state="active"] {
+  background-color: rgba(0, 214, 143, 0.15) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-combobox-item="true"][data-selected="true"] {
+  background-color: rgba(0, 214, 143, 0.15) !important;
+  color: var(--text-primary) !important;
 }
