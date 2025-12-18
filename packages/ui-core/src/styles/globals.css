@@ -210,13 +210,13 @@
   .black {
     /* Main Layout - Rich UI inspired from HTML (onboarding6.html) */
     --background: #050505;
-    --foreground: #ffffff;
+    --foreground: #cccccc;
 
     /* Cards, Popovers, etc. */
     --card: #0F0F11;
-    --card-foreground: #ffffff;
+    --card-foreground: #cccccc;
     --popover: #0F0F11;
-    --popover-foreground: #ffffff;
+    --popover-foreground: #cccccc;
 
     /* Primary Buttons & Links */
     --primary: #00D68F;
@@ -224,7 +224,7 @@
 
     /* Secondary Buttons */
     --secondary: #18181b;
-    --secondary-foreground: #ffffff;
+    --secondary-foreground: #cccccc;
 
     /* Muted Text & Elements */
     --muted: #18181b;
@@ -232,11 +232,11 @@
 
     /* Accent (Hover states, etc.) */
     --accent: #18181b;
-    --accent-foreground: #ffffff;
+    --accent-foreground: #cccccc;
 
     /* Destructive Actions */
     --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
+    --destructive-foreground: #cccccc;
 
     /* Borders & Inputs */
     --border: rgba(255, 255, 255, 0.2);
@@ -245,7 +245,7 @@
 
     /* Sidebar Specific */
     --sidebar: #050505;
-    --sidebar-foreground: #ffffff;
+    --sidebar-foreground: #cccccc;
     --sidebar-accent: #0F0F11;
 
     /* Rich UI Color System - Black Mode (matching onboarding6.html) */
@@ -256,7 +256,7 @@
     --bg-deep: #050505;
     --bg-card: #0F0F11;
     --bg-surface: #18181b;
-    --text-primary: #ffffff;
+    --text-primary: #cccccc;
     --text-secondary: #a1a1aa;
     --text-muted: #71717a;
     --border-color: rgba(255, 255, 255, 0.2);
