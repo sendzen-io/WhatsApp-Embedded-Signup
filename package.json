@@ -6,24 +6,24 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "playground":"pnpm run dev --filter=oss-api-playground",
-    "suite":"pnpm run dev --filter=oss-suite",
-    "template":"pnpm run dev --filter=oss-template-management",
-    "embedded-setup":"pnpm run dev --filter=oss-embedded-setup",
-    "marketing":"pnpm run dev --filter=marketing",
-    "product":"pnpm run dev --filter=product",
+    "playground": "pnpm run dev --filter=oss-api-playground",
+    "suite": "pnpm run dev --filter=oss-suite",
+    "template": "pnpm run dev --filter=oss-template-management",
+    "embedded-setup": "pnpm run dev --filter=oss-embedded-setup",
+    "marketing": "pnpm run dev --filter=marketing",
+    "product": "pnpm run dev --filter=product",
     "pnpm:run": "pnpm run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@workspace/internal-consent": "workspace:*",
     "@workspace/eslint-config": "workspace:*",
+    "@workspace/internal-consent": "workspace:*",
     "@workspace/internal-i18n-config": "workspace:*",
     "@workspace/internal-seo": "workspace:*",
     "@workspace/internal-types": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "prettier": "^3.5.1",
-    "turbo": "^2.4.2",
+    "prettier": "^3.7.4",
+    "turbo": "^2.7.2",
     "typescript": "5.7.3"
   },
   "packageManager": "pnpm@10.15.0",
@@ -31,7 +31,6 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@eslint/js": "^9.0.0",
-    "shiki": "^3.9.2"
+    "@eslint/js": "^9.39.2"
   }
 }
