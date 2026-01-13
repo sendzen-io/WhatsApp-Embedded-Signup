@@ -28,7 +28,7 @@ const getToastIcon = (variant?: ToastVariant) => {
 
   switch (variant) {
     case "success":
-      return <CheckCircle2 {...iconProps} className={cn(iconProps.className, "text-[var(--brand-green)] dark:text-green-400")} />
+      return <CheckCircle2 {...iconProps} className={cn(iconProps.className, "text-green-800")} />
     case "destructive":
       return <XCircle {...iconProps} className={cn(iconProps.className, "text-destructive-foreground")} />
     case "warning":

@@ -33,11 +33,11 @@ const toastVariants = cva(
         destructive:
           "destructive border-destructive bg-destructive text-destructive-foreground",
         success:
-          "success border-[var(--brand-green)] bg-[var(--brand-green-dim)] text-[var(--brand-green)] dark:bg-green-900/20 dark:text-green-400 dark:border-green-800",
+          "success border-[var(--brand-green)] bg-green-50 text-green-800",
         warning:
-          "warning border-yellow-500 bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800",
+          "warning border-yellow-500 bg-yellow-50 text-yellow-800",
         information:
-          "information border-blue-500 bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800",
+          "information border-blue-500 bg-blue-50 text-blue-800",
       },
     },
     defaultVariants: {
@@ -83,7 +83,7 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600 group-[.success]:text-[var(--brand-green)]/70 group-[.success]:hover:text-[var(--brand-green)] group-[.success]:focus:ring-[var(--brand-green)] group-[.warning]:text-yellow-600 group-[.warning]:hover:text-yellow-700 group-[.warning]:focus:ring-yellow-500 dark:group-[.warning]:text-yellow-400 dark:group-[.warning]:hover:text-yellow-300 group-[.information]:text-blue-600 group-[.information]:hover:text-blue-700 group-[.information]:focus:ring-blue-500 dark:group-[.information]:text-blue-400 dark:group-[.information]:hover:text-blue-300",
+      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600 group-[.success]:text-green-600 group-[.success]:hover:text-green-700 group-[.success]:focus:ring-green-500 group-[.warning]:text-yellow-600 group-[.warning]:hover:text-yellow-700 group-[.warning]:focus:ring-yellow-500 dark:group-[.warning]:text-yellow-400 dark:group-[.warning]:hover:text-yellow-300 group-[.information]:text-blue-600 group-[.information]:hover:text-blue-700 group-[.information]:focus:ring-blue-500 dark:group-[.information]:text-blue-400 dark:group-[.information]:hover:text-blue-300",
       className
     )}
     toast-close=""
