@@ -1,12 +1,12 @@
 "use client";
 
-import { Badge } from "../badge";
+import { Badge } from "./components/badge";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../collapsible";
-import { cn } from "@workspace/ui-core/lib/utils";
+} from "./components/collapsible";
+import { cn } from "../../lib/utils";
 import type { ToolUIPart } from "ai";
 import {
   CheckCircleIcon,
@@ -24,7 +24,7 @@ export type ToolProps = ComponentProps<typeof Collapsible>;
 
 export const Tool = ({ className, ...props }: ToolProps) => (
   <Collapsible
-    className={cn("group not-prose mb-4 w-full rounded-md border", className)}
+    className={cn("not-prose mb-4 w-full rounded-md border", className)}
     {...props}
   />
 );

@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "./ui/button";
-import { cn } from "@workspace/ui-core/lib/utils";
+import { Button } from "./components/button";
+import { cn } from "../../lib/utils";
 import { ArrowDownIcon } from "lucide-react";
 import type { ComponentProps } from "react";
 import { useCallback } from "react";
@@ -50,7 +50,7 @@ export const ConversationEmptyState = ({
   <div
     className={cn(
       "flex size-full flex-col items-center justify-center gap-3 p-8 text-center",
-      className,
+      className
     )}
     {...props}
   >
@@ -84,8 +84,8 @@ export const ConversationScrollButton = ({
     !isAtBottom && (
       <Button
         className={cn(
-          "absolute bottom-4 left-[50%] translate-x-[-50%] rounded-full dark:bg-background dark:hover:bg-muted",
-          className,
+          "absolute bottom-4 left-[50%] translate-x-[-50%] rounded-full",
+          className
         )}
         onClick={handleScrollToBottom}
         size="icon"

@@ -1,17 +1,17 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { Button } from "./components/button";
 import {
   ButtonGroup,
   ButtonGroupText,
-} from "./ui/button-group";
+} from "./components/button-group";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
-import { cn } from "@workspace/ui-core/lib/utils";
+} from "./components/tooltip";
+import { cn } from "../../lib/utils";
 import type { FileUIPart, UIMessage } from "ai";
 import {
   ChevronLeftIcon,
@@ -52,6 +52,7 @@ export const MessageContent = ({
       "group-[.is-assistant]:text-foreground",
       className
     )}
+
     {...props}
   >
     {children}
@@ -80,7 +81,7 @@ export const MessageAction = ({
   children,
   label,
   variant = "ghost",
-  size = "icon",
+  size = "icon-sm",
   ...props
 }: MessageActionProps) => {
   const button = (
@@ -249,7 +250,7 @@ export const MessageBranchPrevious = ({
       aria-label="Previous branch"
       disabled={totalBranches <= 1}
       onClick={goToPrevious}
-      size="icon"
+      size="icon-sm"
       type="button"
       variant="ghost"
       {...props}
@@ -273,7 +274,7 @@ export const MessageBranchNext = ({
       aria-label="Next branch"
       disabled={totalBranches <= 1}
       onClick={goToNext}
-      size="icon"
+      size="icon-sm"
       type="button"
       variant="ghost"
       {...props}

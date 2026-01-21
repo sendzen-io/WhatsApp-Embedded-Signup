@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { Button } from "./components/button";
 import {
   Command,
   CommandEmpty,
@@ -9,31 +9,31 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "./ui/command";
+} from "./components/command";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "./components/dropdown-menu";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "./ui/hover-card";
+} from "./components/hover-card";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupTextarea,
-} from "./ui/input-group";
+} from "./components/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "./components/select";
 import { cn } from "../../lib/utils";
 import type { ChatStatus, FileUIPart } from "ai";
 import {
@@ -154,7 +154,7 @@ export function PromptInputProvider({
     (FileUIPart & { id: string })[]
   >([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const openRef = useRef<() => void>(() => { });
+  const openRef = useRef<() => void>(() => {});
 
   const add = useCallback((files: File[] | FileList) => {
     const incoming = Array.from(files);
@@ -714,9 +714,9 @@ export const PromptInput = ({
     const text = usingProvider
       ? controller.textInput.value
       : (() => {
-        const formData = new FormData(form);
-        return (formData.get("message") as string) || "";
-      })();
+          const formData = new FormData(form);
+          return (formData.get("message") as string) || "";
+        })();
 
     // Reset form immediately after capturing text to avoid race condition
     // where user input during async blob conversion would be lost
@@ -888,15 +888,15 @@ export const PromptInputTextarea = ({
 
   const controlledProps = controller
     ? {
-      value: controller.textInput.value,
-      onChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
-        controller.textInput.setInput(e.currentTarget.value);
-        onChange?.(e);
-      },
-    }
+        value: controller.textInput.value,
+        onChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
+          controller.textInput.setInput(e.currentTarget.value);
+          onChange?.(e);
+        },
+      }
     : {
-      onChange,
-    };
+        onChange,
+      };
 
   return (
     <InputGroupTextarea
@@ -1063,11 +1063,11 @@ interface SpeechRecognition extends EventTarget {
   onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
   onend: ((this: SpeechRecognition, ev: Event) => any) | null;
   onresult:
-  | ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any)
-  | null;
+    | ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any)
+    | null;
   onerror:
-  | ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any)
-  | null;
+    | ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any)
+    | null;
 }
 
 interface SpeechRecognitionEvent extends Event {
@@ -1100,10 +1100,10 @@ interface SpeechRecognitionErrorEvent extends Event {
 declare global {
   interface Window {
     SpeechRecognition: {
-      new(): SpeechRecognition;
+      new (): SpeechRecognition;
     };
     webkitSpeechRecognition: {
-      new(): SpeechRecognition;
+      new (): SpeechRecognition;
     };
   }
 }
@@ -1153,7 +1153,7 @@ export const PromptInputSpeechButton = ({
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const result = event.results[i];
-          if (result && result.isFinal) {
+          if (result &&result.isFinal) {
             finalTranscript += result[0]?.transcript ?? "";
           }
         }
