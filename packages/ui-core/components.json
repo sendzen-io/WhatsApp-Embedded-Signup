@@ -13,9 +13,12 @@
   "aliases": {
     "components": "@workspace/ui-core/components",
     "utils": "@workspace/ui-core/lib/utils",
-    "hooks": "@workspace/ui-core/hooks",
+    "ui": "@workspace/ui-core/components",
     "lib": "@workspace/ui-core/lib",
-    "ui": "@workspace/ui-core/components"
+    "hooks": "@workspace/ui-core/hooks"
+  },
+  "registries": {
+    "@intentui": "https://intentui.com/r/{name}",
+    "@ai-elements": "https://registry.ai-sdk.dev/{name}.json"
   }
 }
-
