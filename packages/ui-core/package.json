@@ -45,6 +45,7 @@
     "media-chrome": "^4.17.2",
     "motion": "^12.26.2",
     "nanoid": "^5.1.6",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.1",
     "react-aria-components": "^1.14.0",
     "react-dom": "^19.2.1",
