@@ -11,8 +11,8 @@ export type LoaderProps = HTMLAttributes<HTMLDivElement> & {
 export const Loader = ({ 
   className, 
   size = 16, 
-  Labels = ["Understanding Query", "Analyzing", "Thinking", "Generating Response"],
-  maxRotationTime = 10000, // Default 10 seconds
+  Labels = ["Understanding Query", "Analyzing", "Thinking", "Collecting Data", "Generating Response"],
+  maxRotationTime = 12500, // Default 12.5 seconds
   ...props 
 }: LoaderProps) => {
   const [currentLabelIndex, setCurrentLabelIndex] = useState(0);

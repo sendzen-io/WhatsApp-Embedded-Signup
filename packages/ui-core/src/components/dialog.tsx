@@ -46,14 +46,36 @@ function DialogOverlay({
   )
 }
 
+const FOCUSABLE_INPUT_SELECTOR =
+  'input:not([type="hidden"]):not([disabled]), textarea:not([disabled]), select:not([disabled])'
+
 function DialogContent({
   className,
   children,
   showCloseButton = true,
+  autoFocusFirstInput = true,
+  onOpenAutoFocus,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
+  /** When true (default), focuses the first input/textarea/select when the dialog opens */
+  autoFocusFirstInput?: boolean
 }) {
+  const handleOpenAutoFocus = React.useCallback(
+    (e: Event) => {
+      if (autoFocusFirstInput) {
+        const content = e.currentTarget as HTMLElement
+        const firstInput = content?.querySelector(FOCUSABLE_INPUT_SELECTOR) as HTMLElement | null
+        if (firstInput) {
+          e.preventDefault()
+          firstInput.focus()
+        }
+      }
+      onOpenAutoFocus?.(e)
+    },
+    [autoFocusFirstInput, onOpenAutoFocus]
+  )
+
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -63,6 +85,7 @@ function DialogContent({
           "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
           className
         )}
+        onOpenAutoFocus={handleOpenAutoFocus}
         {...props}
       >
         {children}
