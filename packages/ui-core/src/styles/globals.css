@@ -33,13 +33,14 @@
     /* Primary Buttons & Links */
     --primary: #18181b;
     --primary-foreground: #fafafa;
+    --brand-hover: #0d9668;
 
     /* Secondary Buttons */
     --secondary: #f4f4f5;
     --secondary-foreground: #18181b;
 
     /* Muted Text & Elements */
-    --muted: #f4f4f5;
+    --muted: #e4e4e5;
     --muted-foreground: #71717a;
 
     /* Accent (Hover states, etc.) */
@@ -131,6 +132,7 @@
     /* Primary Buttons & Links */
     --primary: #10b981;
     --primary-foreground: #ffffff;
+    --brand-hover: #0d9668;
 
     /* Secondary Buttons */
     --secondary: #374151;
@@ -224,6 +226,7 @@
     /* Primary Buttons & Links */
     --primary: #00D68F;
     --primary-foreground: #000000;
+    --brand-hover: #0d9668;
 
     /* Secondary Buttons */
     --secondary: #18181b;
@@ -927,6 +930,17 @@
     padding: 0.75rem;
   }
 }
+}
+
+/* CreateChatbotModal option card hover - matches first-screen.html design */
+.option-card-select {
+  border-color: var(--border-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.option-card-select:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--primary) 10%, transparent);
+  transform: translateY(-2px);
 }
 
 /* Combobox CommandItem keyboard navigation styles */
