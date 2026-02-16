@@ -73,6 +73,28 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+const addToDismissQueue = (toastId: string, duration?: number) => {
+  // Clear any existing timeout for this toast
+  const existingTimeout = toastTimeouts.get(toastId)
+  if (existingTimeout) {
+    clearTimeout(existingTimeout)
+    toastTimeouts.delete(toastId)
+  }
+
+  // If duration is provided and > 0, set up auto-dismiss
+  if (duration !== undefined && duration > 0) {
+    const timeout = setTimeout(() => {
+      toastTimeouts.delete(toastId)
+      dispatch({
+        type: "DISMISS_TOAST",
+        toastId: toastId,
+      })
+    }, duration)
+
+    toastTimeouts.set(toastId, timeout)
+  }
+}
+
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TOAST":
@@ -92,12 +114,22 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
+      // Clear any existing dismiss timeout when manually dismissing
       if (toastId) {
+        const existingTimeout = toastTimeouts.get(toastId)
+        if (existingTimeout) {
+          clearTimeout(existingTimeout)
+          toastTimeouts.delete(toastId)
+        }
         addToRemoveQueue(toastId)
       } else {
+        // Clear all timeouts when dismissing all
         state.toasts.forEach((toast) => {
+          const existingTimeout = toastTimeouts.get(toast.id)
+          if (existingTimeout) {
+            clearTimeout(existingTimeout)
+            toastTimeouts.delete(toast.id)
+          }
           addToRemoveQueue(toast.id)
         })
       }
@@ -141,7 +173,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
-function toast({ ...props }: Toast) {
+function toast({ duration, ...props }: Toast) {
   const id = genId()
 
   const update = (props: ToasterToast) =>
@@ -162,6 +194,9 @@ function toast({ ...props }: Toast) {
       },
     },
   })
+
+  // Set up auto-dismiss timer if duration is provided
+  addToDismissQueue(id, duration)
 
   return {
     id: id,
