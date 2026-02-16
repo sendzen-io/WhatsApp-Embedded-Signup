@@ -51,16 +51,18 @@ export function Toaster() {
         
         return (
           <Toast key={id} variant={variant} {...props}>
-            <div className="flex gap-3">
-              {Icon}
-              <div className="grid gap-1 flex-1">
-                {title && <ToastTitle>{title}</ToastTitle>}
-                {description && (
-                  <ToastDescription>{description}</ToastDescription>
-                )}
+            <div className="flex flex-col gap-3 min-w-0">
+              <div className="flex gap-3 items-start flex-nowrap min-w-0">
+                {Icon}
+                <div className="grid gap-1 flex-1 min-w-0">
+                  {title && <ToastTitle>{title}</ToastTitle>}
+                  {description && (
+                    <ToastDescription>{description}</ToastDescription>
+                  )}
+                </div>
               </div>
+              {action && <div className="flex justify-center">{action}</div>}
             </div>
-            {action}
             <ToastClose />
           </Toast>
         )

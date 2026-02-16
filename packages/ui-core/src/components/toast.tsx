@@ -16,7 +16,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      "fixed top-0 z-100 flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
       className
     )}
     {...props}
@@ -68,7 +68,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive group-[.success]:border-[var(--brand-green)]/40 group-[.success]:hover:border-[var(--brand-green)]/60 group-[.success]:hover:bg-[var(--brand-green)] group-[.success]:hover:text-white group-[.success]:focus:ring-[var(--brand-green)] group-[.warning]:border-yellow-500/40 group-[.warning]:hover:border-yellow-500/60 group-[.warning]:hover:bg-yellow-500 group-[.warning]:hover:text-white group-[.warning]:focus:ring-yellow-500 group-[.information]:border-blue-500/40 group-[.information]:hover:border-blue-500/60 group-[.information]:hover:bg-blue-500 group-[.information]:hover:text-white group-[.information]:focus:ring-blue-500",
+      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive group-[.success]:border-(--brand-green)/40 group-[.success]:hover:border-(--brand-green)/60 group-[.success]:hover:bg-(--brand-green) group-[.success]:hover:text-white group-[.success]:focus:ring-(--brand-green) group-[.warning]:border-yellow-500/40 group-[.warning]:hover:border-yellow-500/60 group-[.warning]:hover:bg-yellow-500 group-[.warning]:hover:text-white group-[.warning]:focus:ring-yellow-500 group-[.information]:border-blue-500/40 group-[.information]:hover:border-blue-500/60 group-[.information]:hover:bg-blue-500 group-[.information]:hover:text-white group-[.information]:focus:ring-blue-500",
       className
     )}
     {...props}

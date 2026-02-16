@@ -25,18 +25,56 @@ import { Streamdown } from "streamdown";
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   from: UIMessage["role"];
+  assistantAvatar?: string | React.ReactNode;
 };
 
-export const Message = ({ className, from, ...props }: MessageProps) => (
-  <div
-    className={cn(
-      "group flex w-full max-w-[95%] flex-col gap-2",
-      from === "user" ? "is-user ml-auto justify-end" : "is-assistant",
-      className
-    )}
-    {...props}
-  />
-);
+export const Message = ({ 
+  className, 
+  from,
+  assistantAvatar,
+  children,
+  ...props 
+}: MessageProps) => {
+  // Only show avatar for assistant messages
+  const showAvatar = from === "assistant" && assistantAvatar;
+  const isAvatarString = typeof assistantAvatar === "string";
+
+  return (
+    <div
+      className={cn(
+        "group flex w-full max-w-[95%] gap-3 items-start",
+        from === "user" ? "is-user ml-auto flex-row-reverse" : "is-assistant",
+        className
+      )}
+      {...props}
+    >
+      {showAvatar && (
+        <div className="w-8 h-8 rounded-full bg-muted shrink-0 overflow-hidden flex items-center justify-center">
+          {isAvatarString ? (
+            <img
+              src={assistantAvatar as string}
+              alt="Assistant"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = "none";
+              }}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+              {assistantAvatar}
+            </div>
+          )}
+        </div>
+      )}
+      <div className="flex flex-col gap-2 flex-1 min-w-0">
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export type MessageContentProps = HTMLAttributes<HTMLDivElement>;
 
@@ -48,7 +86,7 @@ export const MessageContent = ({
   <div
     className={cn(
       "is-user:dark flex w-fit max-w-full min-w-0 flex-col gap-2 overflow-hidden text-sm",
-      "group-[.is-user]:ml-auto group-[.is-user]:rounded-lg group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-[var(--primary-foreground)] group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-lg group-[.is-assistant]:bg-secondary group-[.is-assistant]:px-4 group-[.is-assistant]:py-3",
+      "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-secondary group-[.is-assistant]:px-4 group-[.is-assistant]:py-3",
       "group-[.is-assistant]:text-foreground",
       className
     )}
