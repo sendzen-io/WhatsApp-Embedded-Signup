@@ -93,9 +93,9 @@ export function Combobox({
           }}
         >
           {selectedOption ? (
-            <div className="flex items-center gap-2">
-              {selectedOption.flag && <span>{selectedOption.flag}</span>}
-              <span>{selectedOption.label}</span>
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              {selectedOption.flag && <span className="shrink-0">{selectedOption.flag}</span>}
+              <span className="truncate">{selectedOption.label}</span>
             </div>
           ) : (
             <span className="text-muted-foreground">{placeholder}</span>
@@ -128,9 +128,9 @@ export function Combobox({
                   className={cn(
                     "cursor-pointer",
                     // active (keyboard focus) - override base accent with !important
-                    "data-[state=active]:!bg-[rgba(0,214,143,0.15)] data-[state=active]:!text-[var(--text-primary)]",
+                    "data-[state=active]:bg-[rgba(0,214,143,0.15)]! data-[state=active]:text-(--text-primary)!",
                     // selected (checked) - override base accent with !important
-                    "data-[selected=true]:!bg-[rgba(0,214,143,0.15)] data-[selected=true]:!text-[var(--text-primary)]",
+                    "data-[selected=true]:bg-[rgba(0,214,143,0.15)]! data-[selected=true]:text-(--text-primary)!",
                     // hover state
                     "hover:bg-[rgba(0,214,143,0.1)]"
                   )}

@@ -28,12 +28,12 @@ export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   assistantAvatar?: string | React.ReactNode;
 };
 
-export const Message = ({ 
-  className, 
+export const Message = ({
+  className,
   from,
   assistantAvatar,
   children,
-  ...props 
+  ...props
 }: MessageProps) => {
   // Only show avatar for assistant messages
   const showAvatar = from === "assistant" && assistantAvatar;
@@ -86,7 +86,7 @@ export const MessageContent = ({
   <div
     className={cn(
       "is-user:dark flex w-fit max-w-full min-w-0 flex-col gap-2 overflow-hidden text-sm",
-      "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-secondary group-[.is-assistant]:px-4 group-[.is-assistant]:py-3",
+      "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-(--bg-secondary) group-[.is-assistant]:px-4 group-[.is-assistant]:py-3 group-[.is-user]:[&_button[data-streamdown='link']]:text-primary-foreground group-[.is-user]:[&_button[data-streamdown='link']]:cursor-pointer group-[.is-assistant]:[&_button[data-streamdown='link']]:break-all group-[.is-assistant]:[&_button[data-streamdown='link']]:cursor-pointer",
       "group-[.is-assistant]:text-foreground",
       className
     )}
@@ -348,6 +348,13 @@ export type MessageResponseProps = ComponentProps<typeof Streamdown>;
 export const MessageResponse = memo(
   ({ className, ...props }: MessageResponseProps) => (
     <Streamdown
+      linkSafety={
+        {
+          enabled: true,
+          onLinkCheck: () => Promise.resolve(true),
+          renderModal: () => null
+        }
+      }
       className={cn(
         "size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
         className
