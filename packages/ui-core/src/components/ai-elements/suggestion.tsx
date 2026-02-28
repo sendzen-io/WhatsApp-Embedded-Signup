@@ -1,26 +1,19 @@
 "use client";
 
 import { Button } from "./components/button";
-import {
-  ScrollArea,
-  ScrollBar,
-} from "./components/scroll-area";
 import { cn } from "../../lib/utils";
-import type { ComponentProps } from "react";
+import type { ComponentProps, HTMLAttributes } from "react";
 
-export type SuggestionsProps = ComponentProps<typeof ScrollArea>;
+export type SuggestionsProps = HTMLAttributes<HTMLDivElement>;
 
 export const Suggestions = ({
   className,
   children,
   ...props
 }: SuggestionsProps) => (
-  <ScrollArea className="w-full overflow-x-auto whitespace-nowrap" {...props}>
-    <div className={cn("flex w-max flex-nowrap items-center gap-2", className)}>
-      {children}
-    </div>
-    <ScrollBar className="hidden" orientation="horizontal" />
-  </ScrollArea>
+  <div className={cn("flex w-full flex-wrap items-center gap-2 overflow-hidden", className)} {...props}>
+    {children}
+  </div>
 );
 
 export type SuggestionProps = Omit<ComponentProps<typeof Button>, "onClick"> & {
@@ -43,7 +36,7 @@ export const Suggestion = ({
 
   return (
     <Button
-      className={cn("cursor-pointer rounded-full px-4", className)}
+      className={cn("cursor-pointer rounded-full px-4 py-[2px] whitespace-normal h-auto text-left max-w-full", className)}
       onClick={handleClick}
       size={size}
       type="button"
