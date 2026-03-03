@@ -19,7 +19,7 @@ export const Loader = ({
   const [isVisible, setIsVisible] = useState(true);
   const startTimeRef = useRef<number>(Date.now());
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
+  const labelTimeInterval = Math.floor(maxRotationTime / Labels.length);
   useEffect(() => {
     if (Labels.length <= 1) return;
 
@@ -55,7 +55,7 @@ export const Loader = ({
     };
 
     // Start rotation
-    intervalRef.current = setInterval(rotateLabels, 2500);
+    intervalRef.current = setInterval(rotateLabels, labelTimeInterval);
 
     // Set a timeout to stop rotation and show last label after maxRotationTime
     const timeoutId = setTimeout(() => {
