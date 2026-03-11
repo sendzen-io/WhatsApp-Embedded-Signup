@@ -42,14 +42,14 @@ export const Message = ({
   return (
     <div
       className={cn(
-        "group flex w-full max-w-[95%] gap-3 items-start",
+        "group flex w-full max-w-[95%] gap-2 items-start",
         from === "user" ? "is-user ml-auto flex-row-reverse" : "is-assistant",
         className
       )}
       {...props}
     >
       {showAvatar && (
-        <div className="w-8 h-8 rounded-full bg-muted shrink-0 overflow-hidden flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full bg-muted shrink-0 overflow-hidden flex items-center justify-center">
           {isAvatarString ? (
             <img
               src={assistantAvatar as string}
@@ -86,7 +86,7 @@ export const MessageContent = ({
   <div
     className={cn(
       "is-user:dark flex w-fit max-w-full min-w-0 flex-col gap-2 overflow-hidden text-sm",
-      "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-(--bg-secondary) group-[.is-assistant]:px-4 group-[.is-assistant]:py-3 group-[.is-user]:[&_button[data-streamdown='link']]:text-primary-foreground group-[.is-user]:[&_button[data-streamdown='link']]:cursor-pointer group-[.is-assistant]:[&_button[data-streamdown='link']]:break-all group-[.is-assistant]:[&_button[data-streamdown='link']]:cursor-pointer",
+      "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-2 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-(--bg-secondary) group-[.is-assistant]:px-2 group-[.is-assistant]:py-3 group-[.is-user]:[&_button[data-streamdown='link']]:text-primary-foreground group-[.is-user]:[&_button[data-streamdown='link']]:cursor-pointer group-[.is-assistant]:[&_button[data-streamdown='link']]:break-all group-[.is-assistant]:[&_button[data-streamdown='link']]:cursor-pointer",
       "group-[.is-assistant]:text-foreground",
       className
     )}
