@@ -3,6 +3,7 @@
 # Dependencies
 node_modules
 sendzen-mockup
+/Lead generation
 .pnp
 .pnp.js
 .vs
