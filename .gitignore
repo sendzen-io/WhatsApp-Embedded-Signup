@@ -8,6 +8,8 @@ sendzen-mockup
 .pnp.js
 .vs
 .cursor
+.agents/
+skills-lock.json
 
 # Local env files
 .env
