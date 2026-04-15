@@ -4,24 +4,29 @@ import { useState, useEffect, useRef } from "react";
 
 export type LoaderProps = HTMLAttributes<HTMLDivElement> & {
   size?: number;
-  Labels?: Array<string>;
+  Labels?: Array<string> | null;
   maxRotationTime?: number; // Time in milliseconds before stopping rotation
+  enableLoader?: boolean;
 };
 
 export const Loader = ({ 
   className, 
   size = 16, 
-  Labels = ["Understanding Query", "Analyzing", "Thinking", "Collecting Data", "Generating Response"],
+  Labels,
   maxRotationTime = 12500, // Default 12.5 seconds
+  enableLoader = true,
   ...props 
 }: LoaderProps) => {
+  const labels = Labels ?? [];
+  const hasLabels = enableLoader && labels.length > 0;
   const [currentLabelIndex, setCurrentLabelIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const startTimeRef = useRef<number>(Date.now());
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const labelTimeInterval = Math.floor(maxRotationTime / Labels.length);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const labelTimeInterval = hasLabels ? Math.floor(maxRotationTime / labels.length) : maxRotationTime;
   useEffect(() => {
-    if (Labels.length <= 1) return;
+    if (!enableLoader) return;
+    if (!hasLabels || labels.length <= 1) return;
 
     const rotateLabels = () => {
       const elapsed = Date.now() - startTimeRef.current;
@@ -33,7 +38,7 @@ export const Loader = ({
           intervalRef.current = null;
         }
         // Set to last label in array
-        setCurrentLabelIndex(Labels.length - 1);
+        setCurrentLabelIndex(labels.length - 1);
         setIsVisible(true);
         return;
       }
@@ -44,11 +49,11 @@ export const Loader = ({
         const elapsedAfterDelay = Date.now() - startTimeRef.current;
         // Double-check time before updating (in case delay caused us to exceed limit)
         if (elapsedAfterDelay < maxRotationTime) {
-          setCurrentLabelIndex((prev) => (prev + 1) % Labels.length);
+          setCurrentLabelIndex((prev) => (prev + 1) % labels.length);
           setIsVisible(true);
         } else {
           // If we exceeded time during fade, show last label
-          setCurrentLabelIndex(Labels.length - 1);
+          setCurrentLabelIndex(labels.length - 1);
           setIsVisible(true);
         }
       }, 300); // Fade out duration
@@ -63,7 +68,7 @@ export const Loader = ({
         clearInterval(intervalRef.current);
         intervalRef.current = null;
       }
-      setCurrentLabelIndex(Labels.length - 1);
+      setCurrentLabelIndex(labels.length - 1);
       setIsVisible(true);
     }, maxRotationTime);
 
@@ -75,9 +80,11 @@ export const Loader = ({
       }
       clearTimeout(timeoutId);
     };
-  }, [Labels.length, maxRotationTime]);
+  }, [enableLoader, hasLabels, labelTimeInterval, labels.length, maxRotationTime]);
 
-  const currentLabel = Labels[currentLabelIndex] || Labels[Labels.length - 1];
+  const currentLabel = hasLabels
+    ? (labels[currentLabelIndex] ?? labels[labels.length - 1])
+    : null;
 
   return (
     <div
@@ -91,14 +98,16 @@ export const Loader = ({
       {...props}
     >
       <div className="ai-loader-content">
-        <span 
-          className={cn(
-            "ai-loader-text text-sm font-medium transition-opacity duration-300",
-            isVisible ? "opacity-100" : "opacity-0"
-          )}
-        >
-          {currentLabel}
-        </span>
+        {hasLabels ? (
+          <span 
+            className={cn(
+              "ai-loader-text text-sm font-medium transition-opacity duration-300",
+              isVisible ? "opacity-100" : "opacity-0"
+            )}
+          >
+            {currentLabel}
+          </span>
+        ) : null}
         <div className="ai-loader-dots">
           <span className="ai-loader-dot ai-loader-dot-1" />
           <span className="ai-loader-dot ai-loader-dot-2" />
