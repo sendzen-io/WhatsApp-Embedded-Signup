@@ -243,6 +243,15 @@ importers:
       '@vercel/sdk':
         specifier: ^1.19.6
         version: 1.19.6
+      '@workspace/internal-i18n-config':
+        specifier: workspace:*
+        version: link:../../packages/internal-i18n-config
+      '@workspace/internal-seo':
+        specifier: workspace:*
+        version: link:../../packages/internal-seo
+      '@workspace/internal-types':
+        specifier: workspace:*
+        version: link:../../packages/internal-types
       '@workspace/ui-core':
         specifier: workspace:*
         version: link:../../packages/ui-core
@@ -856,6 +865,12 @@ importers:
 
   packages/ui-shared:
     dependencies:
+      '@workspace/internal-i18n-config':
+        specifier: workspace:*
+        version: link:../internal-i18n-config
+      '@workspace/internal-types':
+        specifier: workspace:*
+        version: link:../internal-types
       '@workspace/ui-core':
         specifier: workspace:*
         version: link:../ui-core
