@@ -1,10 +1,7 @@
 "use client";
 
 import { Button } from "./components/button";
-import {
-  ButtonGroup,
-  ButtonGroupText,
-} from "./components/button-group";
+import { ButtonGroup, ButtonGroupText } from "./components/button-group";
 import {
   Tooltip,
   TooltipContent,
@@ -22,6 +19,7 @@ import {
 import type { ComponentProps, HTMLAttributes, ReactElement } from "react";
 import { createContext, memo, useContext, useEffect, useState } from "react";
 import { Streamdown } from "streamdown";
+import { chatSafeRehypePlugins } from "./chat-safe-rehype";
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   from: UIMessage["role"];
@@ -44,7 +42,7 @@ export const Message = ({
       className={cn(
         "group flex w-full max-w-[95%] gap-2 items-start",
         from === "user" ? "is-user ml-auto flex-row-reverse" : "is-assistant",
-        className
+        className,
       )}
       {...props}
     >
@@ -69,9 +67,7 @@ export const Message = ({
           )}
         </div>
       )}
-      <div className="flex flex-col gap-2 flex-1 min-w-0">
-        {children}
-      </div>
+      <div className="flex flex-col gap-2 flex-1 min-w-0">{children}</div>
     </div>
   );
 };
@@ -88,7 +84,7 @@ export const MessageContent = ({
       "is-user:dark flex w-fit max-w-full min-w-0 flex-col gap-2 overflow-hidden text-sm",
       "group-[.is-user]:ml-auto group-[.is-user]:rounded-2xl group-[.is-user]:rounded-tr-none group-[.is-user]:bg-primary group-[.is-user]:px-2 group-[.is-user]:py-3 group-[.is-user]:text-primary-foreground group-[.is-assistant]:ml-0 group-[.is-assistant]:rounded-2xl group-[.is-assistant]:rounded-tl-none group-[.is-assistant]:bg-(--bg-secondary) group-[.is-assistant]:px-2 group-[.is-assistant]:py-3 group-[.is-user]:[&_button[data-streamdown='link']]:text-primary-foreground group-[.is-user]:[&_button[data-streamdown='link']]:cursor-pointer group-[.is-assistant]:[&_button[data-streamdown='link']]:break-all group-[.is-assistant]:[&_button[data-streamdown='link']]:cursor-pointer",
       "group-[.is-assistant]:text-foreground",
-      className
+      className,
     )}
 
     {...props}
@@ -155,7 +151,7 @@ type MessageBranchContextType = {
 };
 
 const MessageBranchContext = createContext<MessageBranchContextType | null>(
-  null
+  null,
 );
 
 const useMessageBranch = () => {
@@ -163,7 +159,7 @@ const useMessageBranch = () => {
 
   if (!context) {
     throw new Error(
-      "MessageBranch components must be used within MessageBranch"
+      "MessageBranch components must be used within MessageBranch",
     );
   }
 
@@ -240,7 +236,7 @@ export const MessageBranchContent = ({
     <div
       className={cn(
         "grid gap-2 overflow-hidden [&>div]:pb-0",
-        index === currentBranch ? "block" : "hidden"
+        index === currentBranch ? "block" : "hidden",
       )}
       key={branch.key}
       {...props}
@@ -334,7 +330,7 @@ export const MessageBranchPage = ({
     <ButtonGroupText
       className={cn(
         "border-none bg-transparent text-muted-foreground shadow-none",
-        className
+        className,
       )}
       {...props}
     >
@@ -346,23 +342,23 @@ export const MessageBranchPage = ({
 export type MessageResponseProps = ComponentProps<typeof Streamdown>;
 
 export const MessageResponse = memo(
-  ({ className, ...props }: MessageResponseProps) => (
+  ({ className, rehypePlugins, ...props }: MessageResponseProps) => (
     <Streamdown
-      linkSafety={
-        {
-          enabled: true,
-          onLinkCheck: () => Promise.resolve(true),
-          renderModal: () => null
-        }
-      }
+      {...props}
+      // Omit rehype-raw; sanitize + harden http(s)/mailto only (see chat-safe-rehype)
+      rehypePlugins={rehypePlugins ?? chatSafeRehypePlugins}
+      linkSafety={{
+        enabled: true,
+        onLinkCheck: () => Promise.resolve(true),
+        renderModal: () => null,
+      }}
       className={cn(
         "size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
-        className
+        className,
       )}
-      {...props}
     />
   ),
-  (prevProps, nextProps) => prevProps.children === nextProps.children
+  (prevProps, nextProps) => prevProps.children === nextProps.children,
 );
 
 MessageResponse.displayName = "MessageResponse";
@@ -389,7 +385,7 @@ export function MessageAttachment({
     <div
       className={cn(
         "group relative size-24 overflow-hidden rounded-lg",
-        className
+        className,
       )}
       {...props}
     >
@@ -466,7 +462,7 @@ export function MessageAttachments({
     <div
       className={cn(
         "ml-auto flex w-fit flex-wrap items-start gap-2",
-        className
+        className,
       )}
       {...props}
     >
@@ -485,7 +481,7 @@ export const MessageToolbar = ({
   <div
     className={cn(
       "mt-4 flex w-full items-center justify-between gap-4",
-      className
+      className,
     )}
     {...props}
   >
