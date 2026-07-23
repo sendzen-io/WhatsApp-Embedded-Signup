@@ -11,6 +11,7 @@ import { BrainIcon, ChevronDownIcon } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 import { createContext, memo, useContext, useEffect, useState } from "react";
 import { Streamdown } from "streamdown";
+import { chatSafeRehypePlugins } from "./chat-safe-rehype";
 import { Shimmer } from "./shimmer";
 
 type ReasoningContextValue = {
@@ -170,7 +171,12 @@ export const ReasoningContent = memo(
       )}
       {...props}
     >
-      <Streamdown {...props}>{children}</Streamdown>
+      <Streamdown
+        rehypePlugins={chatSafeRehypePlugins}
+        linkSafety={{ enabled: true }}
+      >
+        {children}
+      </Streamdown>
     </CollapsibleContent>
   )
 );
